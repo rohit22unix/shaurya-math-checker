@@ -288,9 +288,25 @@ def render_styles() -> None:
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Nunito:wght@500;700&display=swap');
 
+        :root {
+            --page-bg-1: #f6fbff;
+            --page-bg-2: #eef7ea;
+            --page-bg-3: #fff6e6;
+            --surface: rgba(255, 255, 255, 0.96);
+            --surface-strong: #ffffff;
+            --text-main: #112b35;
+            --text-muted: #35515a;
+            --accent: #0d7a6f;
+            --accent-strong: #0a5f57;
+            --border: #c7d8de;
+            --sidebar-bg: rgba(248, 252, 255, 0.98);
+            --warning-bg: #fff8d8;
+        }
+
         .stApp {
-            background: linear-gradient(135deg, #f8ffef 0%, #e5f6ff 45%, #fff4db 100%);
+            background: linear-gradient(135deg, var(--page-bg-1) 0%, var(--page-bg-2) 45%, var(--page-bg-3) 100%);
             font-family: 'Nunito', sans-serif;
+            color: var(--text-main);
         }
 
         .block-container {
@@ -299,30 +315,124 @@ def render_styles() -> None:
             padding-bottom: 2rem;
         }
 
+        .stApp, .stApp p, .stApp label, .stApp span, .stApp div {
+            color: var(--text-main);
+        }
+
+        .stCaptionContainer, .stMarkdown p, .stMarkdown li, .stText, .stAlert {
+            color: var(--text-main);
+        }
+
+        [data-testid="stSidebar"] {
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+        }
+
+        [data-testid="stSidebar"] * {
+            color: var(--text-main);
+        }
+
         h1, h2, h3 {
             font-family: 'Baloo 2', cursive;
-            color: #12343b;
+            color: var(--text-main);
             letter-spacing: 0.3px;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.1rem);
+        }
+
+        h2, h3 {
+            line-height: 1.2;
+        }
+
+        [data-testid="stVerticalBlock"] > [data-testid="stVerticalBlockBorderWrapper"] > div,
+        [data-testid="stExpander"],
+        [data-testid="stFileUploader"],
+        [data-testid="stImage"],
+        [data-testid="stMetric"] {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: 0 10px 24px rgba(17, 43, 53, 0.06);
         }
 
         .result-card {
             border-radius: 14px;
             padding: 0.9rem 1rem;
             margin-bottom: 0.75rem;
-            background: rgba(255, 255, 255, 0.75);
-            border: 1px solid rgba(18, 52, 59, 0.14);
-            box-shadow: 0 10px 24px rgba(18, 52, 59, 0.08);
+            background: var(--surface-strong);
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 24px rgba(17, 43, 53, 0.08);
+            color: var(--text-main);
+        }
+
+        [data-baseweb="input"] > div,
+        [data-baseweb="select"] > div,
+        textarea,
+        input {
+            background: var(--surface-strong) !important;
+            color: var(--text-main) !important;
+            border-color: var(--border) !important;
+        }
+
+        [data-baseweb="radio"] label,
+        [data-baseweb="radio"] div,
+        [role="radiogroup"] label,
+        [role="radiogroup"] span {
+            color: var(--text-main) !important;
+        }
+
+        [data-testid="stAlert"] {
+            background: var(--warning-bg);
+            color: var(--text-main);
+            border: 1px solid #e6cf7a;
         }
 
         button[kind="primary"], button[kind="secondary"] {
             border-radius: 999px;
             min-height: 46px;
+            font-weight: 700;
+            border: none !important;
+        }
+
+        button[kind="primary"] {
+            background: var(--accent) !important;
+            color: #ffffff !important;
+        }
+
+        button[kind="secondary"] {
+            background: #e8f4f2 !important;
+            color: var(--accent-strong) !important;
+            border: 1px solid #b8d8d2 !important;
+        }
+
+        button[kind="primary"]:hover,
+        button[kind="secondary"]:hover {
+            filter: brightness(0.97);
+        }
+
+        [data-testid="stMetricValue"],
+        [data-testid="stMetricLabel"] {
+            color: var(--text-main) !important;
+        }
+
+        .stDownloadButton button {
+            width: 100%;
         }
 
         @media (max-width: 768px) {
             .block-container {
                 padding-left: 0.8rem;
                 padding-right: 0.8rem;
+            }
+
+            [data-testid="stHorizontalBlock"] {
+                gap: 0.75rem;
+            }
+
+            .result-card {
+                padding: 1rem;
             }
         }
         </style>
